@@ -256,8 +256,12 @@
     <Compile Include="Assets\_Complete-Game\Scripts\Helpers\VolumeHandler.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Managers\EnemyManager.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Managers\GameOverManager.cs" />
+    <Compile Include="Assets\_Complete-Game\Scripts\Managers\LightControl.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Managers\PauseManager.cs" />
+    <Compile Include="Assets\_Complete-Game\Scripts\Managers\ScecneChange2.cs" />
+    <Compile Include="Assets\_Complete-Game\Scripts\Managers\SceneChange1.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Managers\ScoreManager.cs" />
+    <Compile Include="Assets\_Complete-Game\Scripts\MusicManager\MusicalShooting.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Player\PlayerHealth.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Player\PlayerShooting.cs" />
@@ -311,7 +315,6 @@
     <Compile Include="Assets\Scripts\Managers\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Managers\GameOverManager.cs" />
     <Compile Include="Assets\Scripts\Managers\ScoreManager.cs" />
-    <Compile Include="Assets\Scripts\MusicalShooting.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerShooting.cs" />
@@ -319,7 +322,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\LuckiestGuy\LICENSE.txt" />
-    <None Include="Assets\Koreographer\ReadMe.txt" />
     <None Include="Assets\Plugins\Editor\Koreographer\SonicBloom.Koreo.EditorUI.xml" />
     <None Include="Assets\Plugins\Koreographer\SonicBloom.Koreo.xml" />
     <None Include="Assets\Plugins\Koreographer\SonicBloom.MIDI.xml" />
@@ -364,6 +366,7 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\Tonemapping.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Uber.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
+    <None Include="Assets\_Complete-Game\Koreographer\ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
