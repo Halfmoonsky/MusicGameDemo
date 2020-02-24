@@ -256,6 +256,7 @@
     <Compile Include="Assets\_Complete-Game\Scripts\Helpers\VolumeHandler.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Managers\EnemyManager.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Managers\GameOverManager.cs" />
+    <Compile Include="Assets\_Complete-Game\Scripts\Managers\MyPause.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Managers\PauseManager.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Managers\SceneChange1.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Managers\ScoreManager.cs" />

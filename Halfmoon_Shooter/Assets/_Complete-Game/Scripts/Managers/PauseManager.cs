@@ -51,12 +51,6 @@ public class PauseManager : MonoBehaviour {
 	
 	public void ReturnToMenu()
 	{
-        StartCoroutine(Load());
-    }
-    IEnumerator Load()
-    {
-        AsyncOperation ao = SceneManager.LoadSceneAsync("ChooseSong");
-        yield return new WaitForEndOfFrame();
-        ao.allowSceneActivation = true;
+        SceneManager.LoadScene(1);
     }
 }
