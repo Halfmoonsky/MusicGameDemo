@@ -7,6 +7,7 @@ using SonicBloom.Koreo;
 
 public class MyPause : MonoBehaviour {
     public GameObject audioPlayer;
+    public Slider MusicVolume;
     private AudioSource audio;
     private Canvas canvas;
 	// Use this for initialization
@@ -42,5 +43,10 @@ public class MyPause : MonoBehaviour {
     public void ReturnToMenu()
     {
         SceneManager.LoadScene(1);                   //重新选曲
+    }
+
+    public void ChangeVolume()
+    {
+        audio.volume = MusicVolume.value;
     }
 }
