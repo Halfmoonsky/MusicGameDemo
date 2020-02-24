@@ -256,11 +256,11 @@
     <Compile Include="Assets\_Complete-Game\Scripts\Helpers\VolumeHandler.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Managers\EnemyManager.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Managers\GameOverManager.cs" />
-    <Compile Include="Assets\_Complete-Game\Scripts\Managers\LightControl.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Managers\PauseManager.cs" />
-    <Compile Include="Assets\_Complete-Game\Scripts\Managers\ScecneChange2.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Managers\SceneChange1.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Managers\ScoreManager.cs" />
+    <Compile Include="Assets\_Complete-Game\Scripts\Managers\SelectControl.cs" />
+    <Compile Include="Assets\_Complete-Game\Scripts\MusicManager\LightControl.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\MusicManager\MusicalShooting.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Player\PlayerHealth.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Player\PlayerMovement.cs" />
@@ -367,6 +367,7 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\Uber.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
     <None Include="Assets\_Complete-Game\Koreographer\ReadMe.txt" />
+    <None Include="Assets\%E7%9B%AE%E6%A0%87%E4%BC%98%E5%8C%96%E7%82%B9.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

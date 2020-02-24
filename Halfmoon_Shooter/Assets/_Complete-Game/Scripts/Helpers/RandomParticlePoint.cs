@@ -9,6 +9,6 @@ public class RandomParticlePoint : MonoBehaviour
 
     void OnValidate()
     {
-        GetComponent<ParticleSystem>().Simulate (normalizedTime, true, true);
+        GetComponent<ParticleSystem>().Simulate (normalizedTime, true, true);//可以使粒子特效不受游戏内时间影响，永远不要停下来啊！
     }
 }

@@ -5,15 +5,15 @@ namespace CompleteProject
 {
     public class EnemyMovement : MonoBehaviour
     {
-        Transform player;               // Reference to the player's position.
-        PlayerHealth playerHealth;      // Reference to the player's health.
-        EnemyHealth enemyHealth;        // Reference to this enemy's health.
-        UnityEngine.AI.NavMeshAgent nav;               // Reference to the nav mesh agent.
+        Transform player;               // 玩家的位置
+        PlayerHealth playerHealth;      // 玩家血量
+        EnemyHealth enemyHealth;        // 怪物血量
+        UnityEngine.AI.NavMeshAgent nav;               // NavmeshAgent组件，用于AI自动寻路
 
 
         void Awake ()
         {
-            // Set up the references.
+            // 各种实例化
             player = GameObject.FindGameObjectWithTag ("Player").transform;
             playerHealth = player.GetComponent <PlayerHealth> ();
             enemyHealth = GetComponent <EnemyHealth> ();
@@ -23,16 +23,15 @@ namespace CompleteProject
 
         void Update ()
         {
-            // If the enemy and the player have health left...
+            // 玩家怪物都有血
             if(enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
             {
-                // ... set the destination of the nav mesh agent to the player.
+                //把玩家位置作为终点寻路
                 nav.SetDestination (player.position);
             }
-            // Otherwise...
             else
             {
-                // ... disable the nav mesh agent.
+                // 任有一个条件不满足便停止使用nav
                 nav.enabled = false;
             }
         }

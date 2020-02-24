@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneChange : MonoBehaviour {
+public class SceneChange1 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -15,7 +15,7 @@ public class SceneChange : MonoBehaviour {
     {
         if (Input.anyKey)
         {
-            SceneSwitch();
+            SceneSwitch();//一个很单纯的场景转换脚本
         }
     }
 

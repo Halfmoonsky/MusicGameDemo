@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -20,16 +21,16 @@ public class PauseManager : MonoBehaviour {
 	
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetKeyDown(KeyCode.Escape))//按ESC键暂停游戏
 		{
-			canvas.enabled = !canvas.enabled;
-			Pause();
+			canvas.enabled = !canvas.enabled;//启用画布
+			Pause();                         //暂停
 		}
 	}
 	
 	public void Pause()
 	{
-		Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+		Time.timeScale = Time.timeScale == 0 ? 1 : 0;//暂停的时间
 		Lowpass ();
 		
 	}
@@ -48,12 +49,14 @@ public class PauseManager : MonoBehaviour {
 		}
 	}
 	
-	public void Quit()
+	public void ReturnToMenu()
 	{
-		#if UNITY_EDITOR 
-		EditorApplication.isPlaying = false;
-		#else 
-		Application.Quit();
-		#endif
-	}
+        StartCoroutine(Load());
+    }
+    IEnumerator Load()
+    {
+        AsyncOperation ao = SceneManager.LoadSceneAsync("ChooseSong");
+        yield return new WaitForEndOfFrame();
+        ao.allowSceneActivation = true;
+    }
 }

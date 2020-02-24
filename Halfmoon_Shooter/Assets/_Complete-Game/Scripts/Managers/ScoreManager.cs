@@ -6,26 +6,26 @@ namespace CompleteProject
 {
     public class ScoreManager : MonoBehaviour
     {
-        public static int score;        // The player's score.
+        public static int score;        // 玩家得分
 
 
-        Text text;                      // Reference to the Text component.
+        Text text;                      // text组件
 
 
         void Awake ()
         {
-            // Set up the reference.
+            // 实例化
             text = GetComponent <Text> ();
 
-            // Reset the score.
+            // 重置
             score = 0;
         }
 
 
         void Update ()
         {
-            // Set the displayed text to be the word "Score" followed by the score value.
-            text.text = "Score: " + score;
+            // 得分实时更新
+            text.text = "得分: " + score;
         }
     }
 }

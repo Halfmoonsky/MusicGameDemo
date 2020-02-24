@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class VolumeHandler : MonoBehaviour {
 
 	// Use this for initialization
+    //控制音量的一些脚本
 	void Start () 
 	{
 		if(GameObject.Find("EffectsSlider"))

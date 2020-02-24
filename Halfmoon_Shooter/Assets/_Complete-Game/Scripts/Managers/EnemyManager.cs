@@ -4,32 +4,31 @@ namespace CompleteProject
 {
     public class EnemyManager : MonoBehaviour
     {
-        public PlayerHealth playerHealth;       // Reference to the player's heatlh.
-        public GameObject enemy;                // The enemy prefab to be spawned.
-        public float spawnTime = 3f;            // How long between each spawn.
-        public Transform[] spawnPoints;         // An array of the spawn points this enemy can spawn from.
+        public PlayerHealth playerHealth;       // 玩家血量
+        public GameObject enemy;                // 要刷新的怪
+        public float spawnTime = 3f;            // 怪物刷新时间
+        public Transform[] spawnPoints;         // 怪物刷新点的数组
 
 
         void Start ()
         {
-            // Call the Spawn function after a delay of the spawnTime and then continue to call after the same amount of time.
-            InvokeRepeating ("Spawn", spawnTime, spawnTime);
+            // InvokeRepeating功能为重复执行某函数，三个参数分别为要重复执行的函数名，开始时间与间隔
+            InvokeRepeating("Spawn", spawnTime, spawnTime);
         }
 
 
         void Spawn ()
         {
-            // If the player has no health left...
+            // 玩家死亡
             if(playerHealth.currentHealth <= 0f)
             {
-                // ... exit the function.
                 return;
             }
 
-            // Find a random index between zero and one less than the number of spawn points.
+            // 随机选择刷新点的序号
             int spawnPointIndex = Random.Range (0, spawnPoints.Length);
 
-            // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
+            // 在选择的刷新点刷新新怪
             Instantiate (enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
         }
     }

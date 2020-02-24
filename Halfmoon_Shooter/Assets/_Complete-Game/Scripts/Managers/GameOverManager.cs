@@ -4,25 +4,24 @@ namespace CompleteProject
 {
     public class GameOverManager : MonoBehaviour
     {
-        public PlayerHealth playerHealth;       // Reference to the player's health.
+        public PlayerHealth playerHealth;       //玩家血量
 
 
-        Animator anim;                          // Reference to the animator component.
+        Animator anim;                   //游戏动画状态机       
 
 
         void Awake ()
         {
-            // Set up the reference.
             anim = GetComponent <Animator> ();
         }
 
 
         void Update ()
         {
-            // If the player has run out of health...
+            // 玩家死亡
             if(playerHealth.currentHealth <= 0)
             {
-                // ... tell the animator the game is over.
+                //播放游戏结束动画
                 anim.SetTrigger ("GameOver");
             }
         }

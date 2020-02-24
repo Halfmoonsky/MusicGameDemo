@@ -10,6 +10,6 @@ public class RandomAnimationPoint : MonoBehaviour
     void OnValidate ()
     {
         GetComponent<Animator> ().Update (0f);
-        GetComponent <Animator> ().Play ("Walk", 0, randomize ? Random.value : normalizedTime);
+        GetComponent <Animator> ().Play ("Walk", 0, randomize ? Random.value : normalizedTime);//通过随机数来控制walk动画随机开始，做出像僵尸一样的动作
     }
 }

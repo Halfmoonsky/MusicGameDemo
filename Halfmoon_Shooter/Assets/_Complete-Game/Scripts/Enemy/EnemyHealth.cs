@@ -4,40 +4,40 @@ namespace CompleteProject
 {
     public class EnemyHealth : MonoBehaviour
     {
-        public int startingHealth = 100;            // The amount of health the enemy starts the game with.
-        public int currentHealth;                   // The current health the enemy has.
-        public float sinkSpeed = 2.5f;              // The speed at which the enemy sinks through the floor when dead.
-        public int scoreValue = 10;                 // The amount added to the player's score when the enemy dies.
-        public AudioClip deathClip;                 // The sound to play when the enemy dies.
+        public int startingHealth = 10;             // 究极脆皮怪，改成音游后打的挺慢的，就把怪物的血调低了
+        public int currentHealth;                   // 实时血量.
+        public float sinkSpeed = 2.5f;              // 这个游戏，怪物死了竟然会掉下地板的，这是掉下去的速度
+        public int scoreValue = 10;                 // 击杀得分
+        public AudioClip deathClip;                 // 怪物死亡音效
 
 
-        Animator anim;                              // Reference to the animator.
-        AudioSource enemyAudio;                     // Reference to the audio source.
-        ParticleSystem hitParticles;                // Reference to the particle system that plays when the enemy is damaged.
-        CapsuleCollider capsuleCollider;            // Reference to the capsule collider.
-        bool isDead;                                // Whether the enemy is dead.
-        bool isSinking;                             // Whether the enemy has started sinking through the floor.
+        Animator anim;                              // 各种组件
+        AudioSource enemyAudio;                     
+        ParticleSystem hitParticles;                
+        CapsuleCollider capsuleCollider;            
+        bool isDead;                                // 啪，怪是不是死了
+        bool isSinking;                             // 怪是否在往下掉
 
 
         void Awake ()
         {
-            // Setting up the references.
+            // 各种实例化
             anim = GetComponent <Animator> ();
             enemyAudio = GetComponent <AudioSource> ();
             hitParticles = GetComponentInChildren <ParticleSystem> ();
             capsuleCollider = GetComponent <CapsuleCollider> ();
 
-            // Setting the current health when the enemy first spawns.
+            // 设置实时血量
             currentHealth = startingHealth;
         }
 
 
         void Update ()
         {
-            // If the enemy should be sinking...
+            // 如果怪死了该往下掉了
             if(isSinking)
             {
-                // ... move the enemy down by the sinkSpeed per second.
+                // 让怪慢慢下沉
                 transform.Translate (-Vector3.up * sinkSpeed * Time.deltaTime);
             }
         }
@@ -45,27 +45,27 @@ namespace CompleteProject
 
         public void TakeDamage (int amount, Vector3 hitPoint)
         {
-            // If the enemy is dead...
+            // 怪被杀
             if(isDead)
-                // ... no need to take damage so exit the function.
+                // 就会死
                 return;
 
-            // Play the hurt sound effect.
+            // 伤害音效
             enemyAudio.Play ();
 
-            // Reduce the current health by the amount of damage sustained.
+            // 扣血
             currentHealth -= amount;
             
-            // Set the position of the particle system to where the hit was sustained.
+            // 在打到的位置播放粒子特效
             hitParticles.transform.position = hitPoint;
 
-            // And play the particles.
+            // 喷！
             hitParticles.Play();
 
-            // If the current health is less than or equal to zero...
+            // 怪刚被杀
             if(currentHealth <= 0)
             {
-                // ... the enemy is dead.
+                // 也会死
                 Death ();
             }
         }
@@ -73,16 +73,16 @@ namespace CompleteProject
 
         void Death ()
         {
-            // The enemy is dead.
+            // 死了啦
             isDead = true;
 
-            // Turn the collider into a trigger so shots can pass through it.
+            // 把碰撞器变为触发器，这样子弹就能穿过了，很细节
             capsuleCollider.isTrigger = true;
 
-            // Tell the animator that the enemy is dead.
+            // 放死亡动画
             anim.SetTrigger ("Dead");
 
-            // Change the audio clip of the audio source to the death clip and play it (this will stop the hurt clip playing).
+            // 播放死亡音效
             enemyAudio.clip = deathClip;
             enemyAudio.Play ();
         }
@@ -90,19 +90,19 @@ namespace CompleteProject
 
         public void StartSinking ()
         {
-            // Find and disable the Nav Mesh Agent.
+            // 结束寻路
             GetComponent <UnityEngine.AI.NavMeshAgent> ().enabled = false;
 
-            // Find the rigidbody component and make it kinematic (since we use Translate to sink the enemy).
-            GetComponent <Rigidbody> ().isKinematic = true;
+            // isKinematic：动力学模拟，当值为true的时候表示关闭，我们使用了translate来让怪物下沉，所以不需要模拟
+            GetComponent<Rigidbody> ().isKinematic = true;
 
-            // The enemy should no sink.
+            // 该不该沉
             isSinking = true;
 
-            // Increase the score by the enemy's score value.
+            // 加分
             ScoreManager.score += scoreValue;
 
-            // After 2 seconds destory the enemy.
+            // 2s后销毁物体
             Destroy (gameObject, 2f);
         }
     }

@@ -5,26 +5,26 @@ namespace CompleteProject
 {
     public class CameraFollow : MonoBehaviour
     {
-        public Transform target;            // The position that that camera will be following.
-        public float smoothing = 5f;        // The speed with which the camera will be following.
+        public Transform target;            // 摄像机跟随的位置
+        public float smoothing = 5f;        // 移动速度
 
 
-        Vector3 offset;                     // The initial offset from the target.
+        Vector3 offset;                     // 摄像机与人物的距离
 
 
         void Start ()
         {
-            // Calculate the initial offset.
+            // 计算预设距离
             offset = transform.position - target.position;
         }
 
 
         void FixedUpdate ()
         {
-            // Create a postion the camera is aiming for based on the offset from the target.
+            // 根据offset实时计算摄像机位置
             Vector3 targetCamPos = target.position + offset;
 
-            // Smoothly interpolate between the camera's current position and it's target position.
+            // 利用插值函数平滑的实现摄像机移动
             transform.position = Vector3.Lerp (transform.position, targetCamPos, smoothing * Time.deltaTime);
         }
     }

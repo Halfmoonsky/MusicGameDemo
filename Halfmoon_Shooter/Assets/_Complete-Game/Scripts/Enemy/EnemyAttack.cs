@@ -5,21 +5,21 @@ namespace CompleteProject
 {
     public class EnemyAttack : MonoBehaviour
     {
-        public float timeBetweenAttacks = 0.5f;     // The time in seconds between each attack.
-        public int attackDamage = 10;               // The amount of health taken away per attack.
+        public float timeBetweenAttacks = 0.5f;     // 攻击速度，一秒数刀
+        public int attackDamage = 10;               // 攻击伤害
 
 
-        Animator anim;                              // Reference to the animator component.
-        GameObject player;                          // Reference to the player GameObject.
-        PlayerHealth playerHealth;                  // Reference to the player's health.
-        EnemyHealth enemyHealth;                    // Reference to this enemy's health.
-        bool playerInRange;                         // Whether player is within the trigger collider and can be attacked.
-        float timer;                                // Timer for counting up to the next attack.
+        Animator anim;                              // 各种组件
+        GameObject player;                          
+        PlayerHealth playerHealth;                  // 与玩家生命值关联的脚本
+        EnemyHealth enemyHealth;                    // 与怪物生命值关联的脚本
+        bool playerInRange;                         // 玩家是否处于攻击范围
+        float timer;                                // 为下次攻击计时
 
 
         void Awake ()
         {
-            // Setting up the references.
+            // 各种实例化
             player = GameObject.FindGameObjectWithTag ("Player");
             playerHealth = player.GetComponent <PlayerHealth> ();
             enemyHealth = GetComponent<EnemyHealth>();
@@ -29,10 +29,10 @@ namespace CompleteProject
 
         void OnTriggerEnter (Collider other)
         {
-            // If the entering collider is the player...
+            // 我摸到了，我摸到了！狗头人.jpg 指触发器是玩家的
             if(other.gameObject == player)
             {
-                // ... the player is in range.
+                // 我看到你了（士兵76）
                 playerInRange = true;
             }
         }
@@ -40,10 +40,10 @@ namespace CompleteProject
 
         void OnTriggerExit (Collider other)
         {
-            // If the exiting collider is the player...
+            // 如果玩家触发器走了
             if(other.gameObject == player)
             {
-                // ... the player is no longer in range.
+                // 就是超出范围
                 playerInRange = false;
             }
         }
@@ -51,20 +51,19 @@ namespace CompleteProject
 
         void Update ()
         {
-            // Add the time since Update was last called to the timer.
+            // 更新计时器
             timer += Time.deltaTime;
 
-            // If the timer exceeds the time between attacks, the player is in range and this enemy is alive...
+            // 该打趴你了，指可以攻击了
             if(timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
             {
-                // ... attack.
                 Attack ();
             }
 
-            // If the player has zero or less health...
+            // 哎哟，你没血了
             if(playerHealth.currentHealth <= 0)
             {
-                // ... tell the animator the player is dead.
+                //animator，放死亡动画
                 anim.SetTrigger ("PlayerDead");
             }
         }
@@ -72,13 +71,12 @@ namespace CompleteProject
 
         void Attack ()
         {
-            // Reset the timer.
+            // 重置计时器
             timer = 0f;
 
-            // If the player has health to lose...
+            // 玩家还有血，那就打
             if(playerHealth.currentHealth > 0)
             {
-                // ... damage the player.
                 playerHealth.TakeDamage (attackDamage);
             }
         }
